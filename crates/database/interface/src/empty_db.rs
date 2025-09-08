@@ -53,7 +53,9 @@ impl<E> EmptyDBTyped<E> {
     }
 }
 
-impl<E: DBErrorMarker + Error> Database for EmptyDBTyped<E> {
+impl<E: DBErrorMarker + Error> Database
+    for EmptyDBTyped<E>
+{
     type Error = E;
 
     #[inline]
@@ -97,7 +99,9 @@ impl<E: DBErrorMarker + Error> DatabaseRef for EmptyDBTyped<E> {
 
     #[inline]
     fn block_hash_ref(&self, number: u64) -> Result<B256, Self::Error> {
-        Ok(keccak256(number.to_string().as_bytes()))
+        
+   
+Ok(keccak256(number.to_string().as_bytes()))
     }
 }
 

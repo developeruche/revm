@@ -7,8 +7,13 @@ use database_interface::{Database, DatabaseRef, EmptyDB, WrapDatabaseRef};
 use derive_where::derive_where;
 use primitives::hardfork::SpecId;
 
+fn default_result<DB: Database>() -> Result<(), ContextError<DB::Error>> {
+    Ok(())
+}
+
 /// EVM context contains data that EVM needs for execution.
 #[derive_where(Clone, Debug; BLOCK, CFG, CHAIN, TX, DB, JOURNAL, <DB as Database>::Error)]
+#[cfg_attr(feature = "serde", derive(serde::Serialize, serde::Deserialize))]
 pub struct Context<
     BLOCK = BlockEnv,
     TX = TxEnv,
@@ -27,6 +32,7 @@ pub struct Context<
     pub journaled_state: JOURNAL,
     /// Inner context.
     pub chain: CHAIN,
+    #[cfg_attr(feature = "serde", serde(skip, default = "default_result::<DB>"))]
     /// Error that happened during execution.
     pub error: Result<(), ContextError<DB::Error>>,
 }

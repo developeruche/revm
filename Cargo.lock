@@ -1845,6 +1845,13 @@ dependencies = [
 ]
 
 [[package]]
+name = "example-custom-context"
+version = "0.0.0"
+dependencies = [
+ "revm",
+]
+
+[[package]]
 name = "example-custom-opcodes"
 version = "0.0.0"
 dependencies = [

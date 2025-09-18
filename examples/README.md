@@ -7,3 +7,4 @@
 * `block_traces`: Uses Alloy to fetch blocks transaction and state from provider to execute full block. It uses Eip3155 opcode tracer and saves output to the file.
 * `custom_opcodes`: Example of introducing a custom instruction to the mainnet Evm.
 * `database_components`: Example of decoupled Database in `State` and `BlockHash` and how to use it inside Revm.
+* `custom_context`: Demonstrates how to implement and use custom context in REVM.
